@@ -21,6 +21,7 @@ INJECTED from C:\Users\louzi\dev\flut\MyFirstFlutterApp\android\app\src\main\And
 MERGED from C:\Users\louzi\dev\flut\MyFirstFlutterApp\android\app\src\main\AndroidManifest.xml:1:1-34:12
 MERGED from [:image_picker_android] C:\Users\louzi\dev\flut\MyFirstFlutterApp\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-21:12
 MERGED from [:flutter_plugin_android_lifecycle] C:\Users\louzi\dev\flut\MyFirstFlutterApp\build\flutter_plugin_android_lifecycle\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-9:12
+MERGED from [:image_gallery_saver] C:\Users\louzi\dev\flut\MyFirstFlutterApp\build\image_gallery_saver\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-9:12
 MERGED from [:sqflite] C:\Users\louzi\dev\flut\MyFirstFlutterApp\build\sqflite\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-9:12
 MERGED from [:path_provider_android] C:\Users\louzi\dev\flut\MyFirstFlutterApp\build\path_provider_android\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-9:12
 MERGED from [:gallery_saver] C:\Users\louzi\dev\flut\MyFirstFlutterApp\build\gallery_saver\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-9:12
@@ -82,6 +83,8 @@ MERGED from [:image_picker_android] C:\Users\louzi\dev\flut\MyFirstFlutterApp\bu
 MERGED from [:image_picker_android] C:\Users\louzi\dev\flut\MyFirstFlutterApp\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
 MERGED from [:flutter_plugin_android_lifecycle] C:\Users\louzi\dev\flut\MyFirstFlutterApp\build\flutter_plugin_android_lifecycle\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
 MERGED from [:flutter_plugin_android_lifecycle] C:\Users\louzi\dev\flut\MyFirstFlutterApp\build\flutter_plugin_android_lifecycle\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
+MERGED from [:image_gallery_saver] C:\Users\louzi\dev\flut\MyFirstFlutterApp\build\image_gallery_saver\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
+MERGED from [:image_gallery_saver] C:\Users\louzi\dev\flut\MyFirstFlutterApp\build\image_gallery_saver\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
 MERGED from [:sqflite] C:\Users\louzi\dev\flut\MyFirstFlutterApp\build\sqflite\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
 MERGED from [:sqflite] C:\Users\louzi\dev\flut\MyFirstFlutterApp\build\sqflite\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
 MERGED from [:path_provider_android] C:\Users\louzi\dev\flut\MyFirstFlutterApp\build\path_provider_android\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41

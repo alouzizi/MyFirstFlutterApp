@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lerninig/main.dart';
 List<String> list = [
-'https://drive.google.com/uc?export=view&id=1bFz_cXrO3TuXyHjWmOfcc0F43NczntnL',
-'https://drive.google.com/uc?export=view&id=1BNxiGt6MOeGlfU4BRVdwaU9K7HXQrPwT',
-'https://drive.google.com/uc?export=view&id=1tMU7zvTukuXmbIB_69FA_SyNXIKRXOWS',
 'https://drive.google.com/uc?export=view&id=1i6NVxRIsSByGG18mi9IGQVRK0sJ3cS0E',
 'https://drive.google.com/uc?export=view&id=1f_yVN3ipgusCucbqL2tzJRCFDSlf2Kae',
 'https://drive.google.com/uc?export=view&id=1bAfWU8PBO2mkBFGxTkBDS5_RQUZ6UleJ',
