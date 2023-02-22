@@ -1,0 +1,85 @@
+/ bool _isAdloaded = false;
+BannerAd? bannerAd;
+bool isLoaded = false;
+InterstitialAd? interstitalAd;
+bool isloaded = false;
+
+class Splash extends StatefulWidget {
+  const Splash({Key? key}) : super(key: key);
+  @override
+  // ignore: library_private_types_in_public_api
+  _Splash createState() => _Splash();
+}
+
+void loadBuyedItems() async {
+  final prefs = await SharedPreferences.getInstance();
+  final aprefs = await SharedPreferences.getInstance();
+  s = prefs.getString('alla');
+  dl = aprefs.getBool('dark');
+  if (dl == true) {
+    dark = Colors.black;
+    dark2 = Colors.white;
+  } else {
+    dark = const Color.fromARGB(255, 255, 255, 255);
+    dark2 = const Color.fromARGB(255, 0, 0, 0);
+  }
+      for (int k = 0; k < newset.length; k++) {
+      var l = newset[k];
+      var h = l.split("/");
+      newset[k] = "https://drive.google.com/uc?export=view&id=" + h[5];
+    }
+    for (int k = 0; k < popular.length; k++) {
+      var l = popular[k];
+      var h = l.split("/");
+      popular[k] = "https://drive.google.com/uc?export=view&id=" + h[5];
+    }
+      for (int k = 0; k < trending.length; k++) {
+      var l = trending[k];
+      var h = l.split("/");
+      trending[k] = "https://drive.google.com/uc?export=view&id=" + h[5];
+    }
+      for (int k = 0; k < random.length; k++) {
+      var l = random[k];
+      var h = l.split("/");
+      random[k] = "https://drive.google.com/uc?export=view&id=" + h[5];
+    }
+}
+
+_initBannerAd() {
+  bannerAd = BannerAd(
+    size: AdSize.banner,
+    adUnitId: "ca-app-pub-3566489585909846/6587329467",
+    listener: BannerAdListener(
+      onAdLoaded: (ad) {
+        isLoaded = true;
+      },
+      onAdFailedToLoad: (ad, error) {},
+    ),
+    request: const AdRequest(),
+  );
+  bannerAd!.load();
+}
+
+_initInterstitialAd() {
+  InterstitialAd.load(
+      adUnitId: "ca-app-pub-3566489585909846/1511096751",
+      request: AdRequest(),
+      adLoadCallback: InterstitialAdLoadCallback(
+        onAdLoaded: (ad) {
+          isloaded = true;
+          interstitalAd = ad;
+        },
+        onAdFailedToLoad: (error) {
+          print("error");
+        },
+      ));
+}
+
+class _Splash extends State<Splash> {
+  @override
+  void initState() {
+    super.initState();
+    loadBuyedItems();
+    _initBannerAd();
+    _initInterstitialAd();
+    print("jjjjjjjjjjjjjjjjj\n");
