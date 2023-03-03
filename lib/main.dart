@@ -1,3 +1,4 @@
+
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
@@ -6,13 +7,19 @@ import 'package:dio/dio.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:http/http.dart' as http;
 import 'package:lerninig/main.dart';
+import 'dart:convert';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:webview_flutter_android/webview_flutter_android.dart';
 
 BannerAd? bannerAd;
 bool isLoaded = false;
 InterstitialAd? interstitalAd;
+String? interstital;
+String? banner;
+int bstate = 0;
+String? istate = "ok";
 bool isloaded = false;
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,10 +27,77 @@ void main() {
   runApp(MyApp());
 }
 
+
+Future<Album> fetchAlbum() async {
+  final response = await http
+      .get(Uri.parse('https://drive.google.com/uc?export=download&id=1zEwONBKfuVJvnRN46RjKZtK1l7gxmYeR'));
+
+  if (response.statusCode == 200) {
+    final jsonData = jsonDecode(response.body);
+    final album = Album(
+      bstate: jsonData['bstate'],
+      istate: jsonData['istate'],
+      images: jsonData['images'],
+      banner: jsonData['banner'],
+      
+      interstital: jsonData['interstitial'],
+    );
+    list.clear();
+    bstate = album.bstate;
+    istate = album.istate;
+    list = album.images;
+    interstital = album.interstital;
+    banner = album.banner;
+    print("\n\n**************************************************\n\n");
+    print(album.istate);
+  //  print(album.bstate);
+  //  for (var i = 0; i < album.images.length; i++) {
+  //     print(album.images[i]);
+  //     print(i);
+  //   }
+
+    print(album.banner);
+    print(album.interstital);
+    print("\n\n**************************************************\n\n");
+    return album;
+  }
+  else {
+    // If the server did not return a 200 OK response,
+    // then throw an exception.
+    throw Exception('Failed to load album');
+  }
+}
+
+class Album {
+  final int bstate;
+  final String? istate;
+  final List<dynamic> images;
+  final String ?banner;
+  final String ?interstital;
+
+  const Album({
+    required this.bstate,
+    required this.istate,
+    required this.images,
+    required this.banner,
+    required this.interstital,
+  });
+
+  factory Album.fromJson(Map<String, dynamic> json) {
+    return Album(
+      bstate: json['bstate'],
+      istate: json['istate'],
+      images: json['images'],
+      banner: json['banner'],
+      interstital: json['interstital'],
+    );
+  }
+}
+
 _initBannerAd() {
   bannerAd = BannerAd(
     size: AdSize.banner,
-    adUnitId: "ca-app-pub-3940256099942544/6300978111",
+    adUnitId: banner.toString(),
     listener: BannerAdListener(
       onAdLoaded: (ad) {
         isLoaded = true;
@@ -37,12 +111,13 @@ _initBannerAd() {
 
 _initInterstitialAd() {
   InterstitialAd.load(
-      adUnitId: "ca-app-pub-5122909812015815/8951936917",
+      adUnitId: 'ca-app-pub-3940256099942544/1033173712',
       request: AdRequest(),
       adLoadCallback: InterstitialAdLoadCallback(
         onAdLoaded: (ad) {
           isloaded = true;
           interstitalAd = ad;
+    print(interstital);
         },
         onAdFailedToLoad: (error) {
           print("error");
@@ -70,6 +145,7 @@ class _MyAppState extends State<MyApp> {
 }
 
 class WallpaperList extends StatefulWidget {
+  
   const WallpaperList({super.key});
 
   @override
@@ -78,12 +154,20 @@ class WallpaperList extends StatefulWidget {
 
 class _WallpaperListState extends State<WallpaperList> {
   // @override
+  late String s;
   @override
   void initState() {
     super.initState();
     // loadBuyedItems();
-    _initBannerAd();
-    _initInterstitialAd();
+  //  fetchAlbum();
+    if(istate == null)
+      _initInterstitialAd();
+    fetchAlbum();
+    
+    // album.
+    //print(s);
+    // if(bstate == true)
+    //   _initBannerAd();
   }
 
   Widget build(BuildContext context) {
@@ -148,7 +232,8 @@ class _WallpaperListState extends State<WallpaperList> {
                     );
                     // if(index%2 == 0)
                     interstitalAd!.show();
-                    _initInterstitialAd();
+                    if(istate != null)
+                      _initInterstitialAd();
                   },
                   child: Container(
                     height: 350,
@@ -232,7 +317,8 @@ class _FullScreenImageState extends State<FullScreenImage> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           interstitalAd!.show();
-          _initInterstitialAd();
+          if(istate != null)
+            _initInterstitialAd();
           _getHttp();
         },
         child: const Icon(Icons.download),
